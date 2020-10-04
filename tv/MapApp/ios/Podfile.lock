@@ -1,5 +1,4 @@
 PODS:
-  - "@react-native-mapbox-gl-mapbox-static (5.8.0)"
   - boost-for-react-native (1.63.0)
   - DoubleConversion (1.1.6)
   - FBLazyVector (0.63.1-1)
@@ -20,9 +19,6 @@ PODS:
     - DoubleConversion
     - glog
   - glog (0.3.5)
-  - Mapbox-iOS-SDK (5.9.0):
-    - MapboxMobileEvents (= 0.10.2)
-  - MapboxMobileEvents (0.10.2)
   - RCTRequired (0.63.1-1)
   - RCTTypeSafety (0.63.1-1):
     - FBLazyVector (= 0.63.1-1)
@@ -171,20 +167,6 @@ PODS:
     - React-cxxreact (= 0.63.1-1)
     - React-jsi (= 0.63.1-1)
   - React-jsinspector (0.63.1-1)
-  - react-native-mapbox-gl (8.1.0-rc.4):
-    - "@react-native-mapbox-gl-mapbox-static (~> 5.8)"
-    - Mapbox-iOS-SDK (~> 5.8)
-    - React
-    - react-native-mapbox-gl/DynamicLibrary (= 8.1.0-rc.4)
-    - react-native-mapbox-gl/StaticLibraryFixer (= 8.1.0-rc.4)
-  - react-native-mapbox-gl/DynamicLibrary (8.1.0-rc.4):
-    - "@react-native-mapbox-gl-mapbox-static (~> 5.8)"
-    - Mapbox-iOS-SDK (~> 5.8)
-    - React
-  - react-native-mapbox-gl/StaticLibraryFixer (8.1.0-rc.4):
-    - "@react-native-mapbox-gl-mapbox-static (~> 5.8)"
-    - Mapbox-iOS-SDK (~> 5.8)
-    - React
   - React-RCTAnimation (0.63.1-1):
     - FBReactNativeSpec (= 0.63.1-1)
     - Folly (= 2020.01.13.00)
@@ -257,7 +239,6 @@ DEPENDENCIES:
   - React-jsi (from `../node_modules/react-native/ReactCommon/jsi`)
   - React-jsiexecutor (from `../node_modules/react-native/ReactCommon/jsiexecutor`)
   - React-jsinspector (from `../node_modules/react-native/ReactCommon/jsinspector`)
-  - "react-native-mapbox-gl (from `../node_modules/@react-native-mapbox-gl/maps`)"
   - React-RCTAnimation (from `../node_modules/react-native/Libraries/NativeAnimation`)
   - React-RCTBlob (from `../node_modules/react-native/Libraries/Blob`)
   - React-RCTImage (from `../node_modules/react-native/Libraries/Image`)
@@ -270,10 +251,7 @@ DEPENDENCIES:
 
 SPEC REPOS:
   https://github.com/cocoapods/specs.git:
-    - "@react-native-mapbox-gl-mapbox-static"
     - boost-for-react-native
-    - Mapbox-iOS-SDK
-    - MapboxMobileEvents
 
 EXTERNAL SOURCES:
   DoubleConversion:
@@ -306,8 +284,6 @@ EXTERNAL SOURCES:
     :path: "../node_modules/react-native/ReactCommon/jsiexecutor"
   React-jsinspector:
     :path: "../node_modules/react-native/ReactCommon/jsinspector"
-  react-native-mapbox-gl:
-    :path: "../node_modules/@react-native-mapbox-gl/maps"
   React-RCTAnimation:
     :path: "../node_modules/react-native/Libraries/NativeAnimation"
   React-RCTBlob:
@@ -328,15 +304,12 @@ EXTERNAL SOURCES:
     :path: "../node_modules/react-native/ReactCommon/yoga"
 
 SPEC CHECKSUMS:
-  "@react-native-mapbox-gl-mapbox-static": e247172bc43f47757f47d6cec1b325b1ab3e9287
   boost-for-react-native: 39c7adb57c4e60d6c5479dd8623128eb5b3f0f2c
   DoubleConversion: cde416483dac037923206447da6e1454df403714
   FBLazyVector: 5942dd8c3a12edc83c6a6d0717a824f541fda0d9
   FBReactNativeSpec: 77817fd2905a7de8dfaa2e3fba0258d29847b77d
   Folly: b73c3869541e86821df3c387eb0af5f65addfab4
   glog: 40a13f7840415b9a77023fbcae0f1e6f43192af3
-  Mapbox-iOS-SDK: a5915700ec84bc1a7f8b3e746d474789e35b7956
-  MapboxMobileEvents: 2bc0ca2eedb627b73cf403258dce2b2fa98074a6
   RCTRequired: d61a2971ac821f58d742aab72ed7d48675f7d3d0
   RCTTypeSafety: fdee8013e73626078d006d2f7873db1bcece8e06
   React: a4e468b33577521483a418b81884b26bf17c805c
@@ -347,7 +320,6 @@ SPEC CHECKSUMS:
   React-jsi: ab68eb8444acd928d0e29d7035bf83f6f7cdede0
   React-jsiexecutor: b7b34f6423b0f016d0305ba13a534dd6964ac659
   React-jsinspector: 63d2d1cd8497a8228b3012d5702a38e6421173f7
-  react-native-mapbox-gl: b2e4cee6a40cb713cd72846c9573cd5bc468c3d5
   React-RCTAnimation: 33de1a41021c81b792878546ffaac6bebf867041
   React-RCTBlob: 848849ded2dd42ce392817c15b40d848bb665ef2
   React-RCTImage: 57c8fcaecbef98a8d6c71e88762764e3fbaa3f79
@@ -358,6 +330,6 @@ SPEC CHECKSUMS:
   ReactCommon: 94f059140bd4f70389d75c199b1a0a0e846b3049
   Yoga: af418e2740c63b84c6ef5340a74b758efea42d4f
 
-PODFILE CHECKSUM: be913ba3df6e95dd9bfeb33418050a23a10dedf6
+PODFILE CHECKSUM: 304d28b879b777fd28d781f7430783ac160a1275
 
 COCOAPODS: 1.7.5

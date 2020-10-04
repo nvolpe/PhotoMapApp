@@ -10,13 +10,13 @@
 
 import React from 'react';
 import {StyleSheet, Text, View} from 'react-native';
-import MapboxGL from '@react-native-mapbox-gl/maps';
+// import MapboxGL from '@react-native-mapbox-gl/maps';
 
 declare const global: {HermesInternal: null | {}};
 
-MapboxGL.setAccessToken(
-  'pk.eyJ1IjoibmF2b2xwZSIsImEiOiJja2ZrZ2JtcmEwdmcwMndtam5kc3A4MG1kIn0.D4Z19FKgr3p_8s2zEybx0Q',
-);
+// MapboxGL.setAccessToken(
+//   'pk.eyJ1IjoibmF2b2xwZSIsImEiOiJja2ZrZ2JtcmEwdmcwMndtam5kc3A4MG1kIn0.D4Z19FKgr3p_8s2zEybx0Q',
+// );
 
 const App = () => {
   return (

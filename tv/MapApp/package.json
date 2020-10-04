@@ -11,7 +11,8 @@
     "clean": "rm -rf node_modules/"
   },
   "dependencies": {
-    "@react-native-mapbox-gl/maps": "^8.1.0-rc.4",
+    "@react-native-community/cameraroll": "^4.0.1",
+    "@react-native-mapbox-gl/maps": "https://github.com/nvolpe/maps#8-fix-project-with-tvos",
     "react": "16.13.1",
     "react-native": "npm:react-native-tvos@0.63.1-1"
   },
