@@ -9,7 +9,8 @@
  */
 
 import React from 'react';
-import {StyleSheet, Text, View} from 'react-native';
+import {StyleSheet, Text, View, TouchableOpacity} from 'react-native';
+import CameraRoll from '@react-native-community/cameraroll';
 // import MapboxGL from '@react-native-mapbox-gl/maps';
 
 declare const global: {HermesInternal: null | {}};
@@ -19,15 +20,50 @@ declare const global: {HermesInternal: null | {}};
 // );
 
 const App = () => {
+  const handleButtonPress = () => {
+    console.log('onPress');
+    CameraRoll.getPhotos({
+      first: 20,
+      assetType: 'Photos',
+    })
+      .then((r) => {
+        // this.setState({photos: r.edges});
+        console.log('Got photos');
+        console.log('photos', r.edges);
+      })
+      .catch((err) => {
+        //Error Loading Images
+      });
+  };
+
+  handleButtonPress();
+
   return (
-    <Text>See Your Changes</Text>
-    // <View style={styles.matchParent}>
-    //   <MapboxGL.MapView
-    //     styleURL={MapboxGL.StyleURL.Dark}
-    //     style={styles.matchParent}>
-    //     <MapboxGL.Camera followZoomLevel={12} />
-    //   </MapboxGL.MapView>
-    // </View>
+    <View style={styles.matchParent}>
+      <View style={styles.testButton}>
+        <Text>Button 1</Text>
+        <TouchableOpacity onPress={handleButtonPress} />
+      </View>
+      <View style={styles.testButton}>
+        <Text>Button 2</Text>
+        <TouchableOpacity onPress={handleButtonPress} />
+      </View>
+
+      {/* <ScrollView>
+        {this.state.photos.map((p, i) => {
+          return (
+            <Image
+              key={i}
+              style={{
+                width: 300,
+                height: 100,
+              }}
+              source={{uri: p.node.image.uri}}
+            />
+          );
+        })}
+      </ScrollView> */}
+    </View>
   );
 };
 
@@ -43,12 +79,19 @@ const styles = StyleSheet.create({
     position: 'absolute',
     right: 0,
   },
+
   // body: {
   //   backgroundColor: Colors.white,
   // },
   sectionContainer: {
     marginTop: 32,
     paddingHorizontal: 24,
+  },
+  testButton: {
+    flex: 2,
+    // width: 500,
+    // height: 500,
+    backgroundColor: 'green',
   },
   // sectionTitle: {
   //   fontSize: 24,
