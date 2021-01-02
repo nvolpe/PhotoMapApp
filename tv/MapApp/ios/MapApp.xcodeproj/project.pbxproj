@@ -17,7 +17,6 @@
 		2DCD954D1E0B4F2C00145EB5 /* MapAppTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 00E356F21AD99517003FC87E /* MapAppTests.m */; };
 		46F3BC776D195B898B3F354D /* libPods-MapApp-tvOS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 36371F9CAD622FF1F1B0AA5A /* libPods-MapApp-tvOS.a */; };
 		81AB9BB82411601600AC10FF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */; };
-		F2C3FC78252A643D006A58E7 /* libRNCCameraRoll-tvos.a in Frameworks */ = {isa = PBXBuildFile; fileRef = F22CEF7E252A5DD1002BD36B /* libRNCCameraRoll-tvos.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -93,7 +92,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				F2C3FC78252A643D006A58E7 /* libRNCCameraRoll-tvos.a in Frameworks */,
 				46F3BC776D195B898B3F354D /* libPods-MapApp-tvOS.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

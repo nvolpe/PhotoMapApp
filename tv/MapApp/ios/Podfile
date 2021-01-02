@@ -31,6 +31,8 @@ target 'MapApp-tvOS' do
 
   use_react_native!(:path => config["reactNativePath"])
 
+  # pod 'react-native-cameraroll', :path => '../node_modules/@react-native-community/cameraroll'
+
   # pod 'react-native-mapbox-gl', :path => '../node_modules/@react-native-mapbox-gl/maps'
   # pod 'react-native-mapbox-gl/DynamicLibrary', :path => '../node_modules/@react-native-mapbox-gl/maps'
   # pod 'react-native-mapbox-gl', :path => '../node_modules/@react-native-mapbox-gl/maps'

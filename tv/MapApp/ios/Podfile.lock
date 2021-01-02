@@ -167,6 +167,8 @@ PODS:
     - React-cxxreact (= 0.63.1-1)
     - React-jsi (= 0.63.1-1)
   - React-jsinspector (0.63.1-1)
+  - react-native-cameraroll (4.0.1):
+    - React
   - React-RCTAnimation (0.63.1-1):
     - FBReactNativeSpec (= 0.63.1-1)
     - Folly (= 2020.01.13.00)
@@ -239,6 +241,7 @@ DEPENDENCIES:
   - React-jsi (from `../node_modules/react-native/ReactCommon/jsi`)
   - React-jsiexecutor (from `../node_modules/react-native/ReactCommon/jsiexecutor`)
   - React-jsinspector (from `../node_modules/react-native/ReactCommon/jsinspector`)
+  - "react-native-cameraroll (from `../node_modules/@react-native-community/cameraroll`)"
   - React-RCTAnimation (from `../node_modules/react-native/Libraries/NativeAnimation`)
   - React-RCTBlob (from `../node_modules/react-native/Libraries/Blob`)
   - React-RCTImage (from `../node_modules/react-native/Libraries/Image`)
@@ -284,6 +287,8 @@ EXTERNAL SOURCES:
     :path: "../node_modules/react-native/ReactCommon/jsiexecutor"
   React-jsinspector:
     :path: "../node_modules/react-native/ReactCommon/jsinspector"
+  react-native-cameraroll:
+    :path: "../node_modules/@react-native-community/cameraroll"
   React-RCTAnimation:
     :path: "../node_modules/react-native/Libraries/NativeAnimation"
   React-RCTBlob:
@@ -320,6 +325,7 @@ SPEC CHECKSUMS:
   React-jsi: ab68eb8444acd928d0e29d7035bf83f6f7cdede0
   React-jsiexecutor: b7b34f6423b0f016d0305ba13a534dd6964ac659
   React-jsinspector: 63d2d1cd8497a8228b3012d5702a38e6421173f7
+  react-native-cameraroll: e77bcf08116e6a4d5bd9e51568d653e404fe23a2
   React-RCTAnimation: 33de1a41021c81b792878546ffaac6bebf867041
   React-RCTBlob: 848849ded2dd42ce392817c15b40d848bb665ef2
   React-RCTImage: 57c8fcaecbef98a8d6c71e88762764e3fbaa3f79

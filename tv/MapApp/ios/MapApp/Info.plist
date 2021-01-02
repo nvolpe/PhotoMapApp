@@ -52,9 +52,7 @@
 		<string>UIInterfaceOrientationLandscapeRight</string>
 	</array>
 	<key>NSPhotoLibraryUsageDescription</key>
-	<string>ios 10 permission for photos</string>
-	<key>NSPhotoLibraryAddUsageDescription</key>
-	<string>ios 11 permission for photos</string>
+	<string>Displays and edits photos to demonstrate the Photos framework.</string>
 	<key>UIViewControllerBasedStatusBarAppearance</key>
 	<false/>
 </dict>
