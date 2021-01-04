@@ -7,71 +7,123 @@
  */
 
 import React from 'react';
-import ReactNative, {
+import {useState} from 'react';
+import {
   SafeAreaView,
   StyleSheet,
+  FlatList,
   ScrollView,
-  Platform,
+  // Platform,
   View,
   Text,
   TouchableOpacity,
+  Image,
 } from 'react-native';
 
 import {Colors} from 'react-native/Libraries/NewAppScreen';
-
 import CameraRoll from '@react-native-community/cameraroll';
+// import AssetScaledImageExample from './src/AssetScaledImageExample';
+
 // import MapboxGL from '@react-native-mapbox-gl/maps';
 
-const handleButtonPress = () => {
-  console.log('onPress');
-  CameraRoll.getPhotos({
-    first: 20,
-    assetType: 'Photos',
-  })
-    .then((r) => {
-      // this.setState({photos: r.edges});
-      console.log('Got photos');
-      console.log('photos', r.edges);
-    })
-    .catch((err) => {
-      console.log('err', err);
-      //Error Loading Images
-    });
-};
+interface Example {
+  name: string;
+  photos: CameraRoll.PhotoIdentifiersPage | null;
+}
 
-const App: () => React$Node = () => {
+function App() {
+  const [photos, setPhotos] = useState<Example>({name: 'test', photos: null});
+
+  const handleButtonPress = async () => {
+    console.log('onPress');
+
+    const params = {
+      first: 20,
+    };
+
+    const output: CameraRoll.PhotoIdentifiersPage = await CameraRoll.getPhotos(
+      params,
+    );
+
+    console.log('photos', output);
+    setPhotos({name: 'test', photos: output});
+    console.log(
+      'uri: photos.photos?.edges[3].node.image.uri',
+      photos.photos?.edges[3].node.image.uri,
+    );
+
+    // CameraRoll.getPhotos({
+    //   first: 20,
+    //   assetType: 'Photos',
+    // })
+    //   .then((r) => {
+    //     // setPhotos(r.edges);
+    //     setPhotos({name: 'test', photos: r.edges});
+    //     console.log('Got photos');
+    //     console.log('photos', r.edges);
+    //   })
+    //   .catch((err) => {
+    //     console.log('err', err);
+    //     //Error Loading Images
+    //   });
+  };
+
+  // const renderItem = ({item}) => {
+  //   console.log('item', item);
+  //   return (
+  //     <View style={styles.row}>
+  //       {/* {item.map((image) => (image ? renderImage(image) : null))} */}
+  //       {item ? renderImage(item) : null}
+  //     </View>
+  //   );
+  // };
+
+  // const renderImage = (asset: CameraRoll.PhotoIdentifier) => {
+  //   const imageSize = 150;
+  //   const imageStyle = [styles.image, {width: imageSize, height: imageSize}];
+  //   console.log('image', asset.node.image);
+  //   return <Image source={asset.node.image} style={imageStyle} />;
+  // };
+
+  // return (
+  //   <SafeAreaView>
+  //     <View style={styles.matchParent}>
+  //       <TouchableOpacity style={styles.testButton} onPress={handleButtonPress}>
+  //         <Text style={styles.sectionTitle}>Get Photos</Text>
+  //       </TouchableOpacity>
+  //       <FlatList
+  //         keyExtractor={(_, idx) => String(idx)}
+  //         renderItem={renderItem}
+  //         style={styles.container}
+  //         data={photos.photos?.edges}
+  //         // extraData={photos.photos?}
+  //       />
+  //     </View>
+  //   </SafeAreaView>
+  // );
+
   return (
     <SafeAreaView>
-      <View style={styles.matchParent}>
-        <TouchableOpacity style={styles.testButton} onPress={handleButtonPress}>
-          <Text>Button 1 Test</Text>
-        </TouchableOpacity>
-        <TouchableOpacity style={styles.testButton} onPress={handleButtonPress}>
-          <Text>Button 2 Test</Text>
-        </TouchableOpacity>
-
-        {/* <ScrollView>
-          {this.state.photos.map((p, i) => {
-            return (
-              <Image
-                key={i}
-                style={{
-                  width: 300,
-                  height: 100,
-                }}
-                source={{uri: p.node.image.uri}}
-              />
-            );
-          })}
-        </ScrollView> */}
-      </View>
+      <TouchableOpacity style={styles.testButton} onPress={handleButtonPress}>
+        <Text style={styles.sectionTitle}>Get Photos</Text>
+      </TouchableOpacity>
+      <TouchableOpacity style={styles.testButton} onPress={handleButtonPress}>
+        <Text style={styles.sectionTitle}>Get Photos 1</Text>
+      </TouchableOpacity>
+      <Image
+        style={styles.imageThumb}
+        source={{
+          uri: photos.photos?.edges[4].node.image.uri,
+        }}
+      />
     </SafeAreaView>
   );
-};
+}
 
 const styles = StyleSheet.create({
   scrollView: {
-    backgroundColor: Colors.lighter,
+    width: '100%',
+    height: 100,
   },
   engine: {
     position: 'absolute',
@@ -107,17 +159,34 @@ const styles = StyleSheet.create({
     textAlign: 'right',
   },
   matchParent: {
-    flex: 1,
-    backgroundColor: 'gray',
+    width: '100%',
+    height: '100%',
+    // backgroundColor: 'gray',
   },
-  // scrollView: {
-  //   backgroundColor: Colors.lighter,
-  // },
   testButton: {
     // flex: 1,
-    width: 300,
-    height: 300,
+    width: 100,
+    height: 100,
     backgroundColor: 'green',
+  },
+  row: {
+    flexDirection: 'row',
+    flex: 1,
+  },
+  image: {
+    margin: 4,
+  },
+  container: {
+    width: 500,
+    height: 500,
+  },
+  imageThumb: {
+    borderWidth: 1,
+    borderColor: 'green',
+    width: 500,
+    height: 500,
+    margin: 5,
+    resizeMode: 'contain',
   },
 });
 
