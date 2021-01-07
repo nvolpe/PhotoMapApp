@@ -1,0 +1,13 @@
+diff --git a/node_modules/@react-native-community/cameraroll/react-native-cameraroll.podspec b/node_modules/@react-native-community/cameraroll/react-native-cameraroll.podspec
+index b02217c..5a3ef1b 100644
+--- a/node_modules/@react-native-community/cameraroll/react-native-cameraroll.podspec
++++ b/node_modules/@react-native-community/cameraroll/react-native-cameraroll.podspec
+@@ -10,7 +10,7 @@ Pod::Spec.new do |s|
+ 
+   s.authors      = package['author']
+   s.homepage     = package['homepage']
+-  s.platform     = :ios, "9.0"
++  s.platform     = :tvos, "11.0"
+ 
+   s.source       = { :git => "https://github.com/react-native-community/react-native-cameraroll.git", :tag => "v#{s.version}" }
+   s.source_files  = "ios/**/*.{h,m}"

@@ -11,10 +11,10 @@ import {useState} from 'react';
 import {
   SafeAreaView,
   StyleSheet,
-  FlatList,
-  ScrollView,
+  // FlatList,
+  // ScrollView,
   // Platform,
-  View,
+  // View,
   Text,
   TouchableOpacity,
   Image,
@@ -23,7 +23,6 @@ import {
 import {Colors} from 'react-native/Libraries/NewAppScreen';
 import CameraRoll from '@react-native-community/cameraroll';
 // import AssetScaledImageExample from './src/AssetScaledImageExample';
-
 // import MapboxGL from '@react-native-mapbox-gl/maps';
 
 interface Example {
