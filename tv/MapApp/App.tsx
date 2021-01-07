@@ -11,10 +11,10 @@ import {useState} from 'react';
 import {
   SafeAreaView,
   StyleSheet,
-  // FlatList,
+  FlatList,
   // ScrollView,
   // Platform,
-  // View,
+  View,
   Text,
   TouchableOpacity,
   Image,
@@ -35,7 +35,6 @@ function App() {
 
   const handleButtonPress = async () => {
     console.log('onPress');
-
     const params = {
       first: 20,
     };
@@ -44,77 +43,33 @@ function App() {
       params,
     );
 
-    console.log('photos', output);
     setPhotos({name: 'test', photos: output});
-    console.log(
-      'uri: photos.photos?.edges[3].node.image.uri',
-      photos.photos?.edges[3].node.image.uri,
-    );
-
-    // CameraRoll.getPhotos({
-    //   first: 20,
-    //   assetType: 'Photos',
-    // })
-    //   .then((r) => {
-    //     // setPhotos(r.edges);
-    //     setPhotos({name: 'test', photos: r.edges});
-    //     console.log('Got photos');
-    //     console.log('photos', r.edges);
-    //   })
-    //   .catch((err) => {
-    //     console.log('err', err);
-    //     //Error Loading Images
-    //   });
   };
 
-  // const renderItem = ({item}) => {
-  //   console.log('item', item);
-  //   return (
-  //     <View style={styles.row}>
-  //       {/* {item.map((image) => (image ? renderImage(image) : null))} */}
-  //       {item ? renderImage(item) : null}
-  //     </View>
-  //   );
-  // };
+  const renderItem = ({item}) => {
+    console.log('item', item);
+    return <View style={styles.row}>{item ? renderImage(item) : null}</View>;
+  };
 
-  // const renderImage = (asset: CameraRoll.PhotoIdentifier) => {
-  //   const imageSize = 150;
-  //   const imageStyle = [styles.image, {width: imageSize, height: imageSize}];
-  //   console.log('image', asset.node.image);
-  //   return <Image source={asset.node.image} style={imageStyle} />;
-  // };
-
-  // return (
-  //   <SafeAreaView>
-  //     <View style={styles.matchParent}>
-  //       <TouchableOpacity style={styles.testButton} onPress={handleButtonPress}>
-  //         <Text style={styles.sectionTitle}>Get Photos</Text>
-  //       </TouchableOpacity>
-  //       <FlatList
-  //         keyExtractor={(_, idx) => String(idx)}
-  //         renderItem={renderItem}
-  //         style={styles.container}
-  //         data={photos.photos?.edges}
-  //         // extraData={photos.photos?}
-  //       />
-  //     </View>
-  //   </SafeAreaView>
-  // );
+  const renderImage = (asset: CameraRoll.PhotoIdentifier) => {
+    const imageSize = 150;
+    const imageStyle = [styles.image, {width: imageSize, height: imageSize}];
+    return <Image source={asset.node.image} style={imageStyle} />;
+  };
 
   return (
     <SafeAreaView>
-      <TouchableOpacity style={styles.testButton} onPress={handleButtonPress}>
-        <Text style={styles.sectionTitle}>Get Photos</Text>
-      </TouchableOpacity>
-      <TouchableOpacity style={styles.testButton} onPress={handleButtonPress}>
-        <Text style={styles.sectionTitle}>Get Photos 1</Text>
-      </TouchableOpacity>
-      <Image
-        style={styles.imageThumb}
-        source={{
-          uri: photos.photos?.edges[4].node.image.uri,
-        }}
-      />
+      <View style={styles.matchParent}>
+        <TouchableOpacity style={styles.testButton} onPress={handleButtonPress}>
+          <Text style={styles.sectionTitle}>Get Photos</Text>
+        </TouchableOpacity>
+        <FlatList
+          keyExtractor={(_, idx) => String(idx)}
+          renderItem={renderItem}
+          style={styles.container}
+          data={photos.photos?.edges}
+        />
+      </View>
     </SafeAreaView>
   );
 }
