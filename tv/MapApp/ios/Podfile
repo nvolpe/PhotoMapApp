@@ -31,6 +31,12 @@ target 'MapApp-tvOS' do
 
   use_react_native!(:path => config["reactNativePath"])
 
+  # React Native Maps dependencies
+  # rn_maps_path = '../node_modules/react-native-maps'
+  # pod 'react-native-google-maps', :path => rn_maps_path
+  # pod 'GoogleMaps'
+  # pod 'Google-Maps-iOS-Utils'
+
   pod 'react-native-cameraroll', :path => '../node_modules/@react-native-community/cameraroll'
 
   # pod 'react-native-mapbox-gl', :path => '../node_modules/@react-native-mapbox-gl/maps'
