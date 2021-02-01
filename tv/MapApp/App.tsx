@@ -8,78 +8,71 @@
 
 import React from 'react';
 import {useState, useEffect} from 'react';
-
 import {
   SafeAreaView,
   StyleSheet,
   View,
   Text,
   TouchableOpacity,
-  // Image,
-  // Alert,
+  Image,
 } from 'react-native';
 import {Colors} from 'react-native/Libraries/NewAppScreen';
 import MapView from 'react-native-maps'; // remove PROVIDER_GOOGLE import if not using Google Maps
-// import CameraRoll from '@react-native-community/cameraroll';
-// import ImageData from './src/testData/ImageData';
+import CameraRoll from '@react-native-community/cameraroll';
+import ImageData from './src/testData/ImageData';
 
-// interface PhotoAlbum {
-//   photos: CameraRoll.PhotoIdentifiersPage | null;
-// }
+interface PhotoAlbum {
+  photos: CameraRoll.PhotoIdentifiersPage | null;
+}
 
-// const LATITUDE = 37.78825;
-// const LONGITUDE = -122.4324;
-
-// const useIcloudPhotos = false;
+const useIcloudPhotos = false;
 
 function App() {
-  let map: MapView | null;
+  let map: MapView | null = null;
 
-  // useEffect(() => {
-  //   async function getPhotos() {
-  //     await requestPhotos();
-  //   }
-  //   getPhotos();
-  // }, []);
+  useEffect(() => {
+    async function getPhotos() {
+      await requestPhotos();
+    }
+    getPhotos();
+  }, []);
 
-  // const [photos, setPhotos] = useState<PhotoAlbum>({
-  //   photos: null,
-  // });
-  // const [currentIndex, setCurrentIndex] = useState<number>(0);
+  const [photos, setPhotos] = useState<PhotoAlbum>({
+    photos: null,
+  });
+  const [currentIndex, setCurrentIndex] = useState<number>(0);
+  const [
+    currentPhoto,
+    setCurrentPhoto,
+  ] = useState<CameraRoll.PhotoIdentifier | null>(null);
 
-  // const requestPhotos = async () => {
-  //   const params = {
-  //     first: 20,
-  //   };
+  const requestPhotos = async () => {
+    console.log('requestPhotos');
+    const params = {
+      first: 20,
+    };
 
-  //   if (useIcloudPhotos) {
-  //     const output: CameraRoll.PhotoIdentifiersPage = await CameraRoll.getPhotos(
-  //       params,
-  //     );
-  //     setPhotos({photos: output});
-  //   } else {
-  //     console.log('got photos');
+    if (useIcloudPhotos) {
+      const output: CameraRoll.PhotoIdentifiersPage = await CameraRoll.getPhotos(
+        params,
+      );
+      setPhotos({photos: output});
+      console.log('Got Photos', output);
+      await animateCamera(output.edges[currentIndex]);
+    } else {
+      console.log('got photos');
 
-  //     let testPhotos: PhotoAlbum = {
-  //       photos: ImageData, //fix type in test file
-  //     };
-  //     setPhotos({photos: testPhotos.photos});
-  //   }
-  // };
+      let testPhotos: PhotoAlbum = {
+        photos: ImageData, //fix type in test file
+      };
+      setPhotos({photos: testPhotos.photos});
+    }
+  };
 
   const handleButtonPress = async () => {
-    console.log('button press');
-    // setCurrentIndex((prevState) => {
-    //   return prevState + 1;
-    // });
-
-    testAnimate();
-
-    // console.log('photos?', JSON.stringify(photos));
-
-    // if (photos.photos && photos.photos.edges[currentIndex]) {
-    //   await animateCamera(photos.photos.edges[currentIndex]);
-    // }
+    if (photos.photos?.edges[currentIndex] && currentIndex < 7) {
+      await animateCamera(photos.photos?.edges[currentIndex]);
+    }
   };
 
   const getRandomInt = (min: number, max: number) => {
@@ -88,59 +81,59 @@ function App() {
     return Math.floor(Math.random() * (max - min) + min); //The maximum is exclusive and the minimum is inclusive
   };
 
-  // const animateCamera = async (photo: CameraRoll.PhotoIdentifier) => {
-  //   // get photo here and animate to it
-  //   // probably better to send photos as a prop to a map componet
-  //   // start to split things out into components.
-
-  //   if (map) {
-  //     const camera = await map.getCamera();
-  //     console.log('camera', camera);
-
-  //     // camera.heading += 45;
-  //     // camera.pitch += 50;
-  //     // camera.altitude -= 2000;
-
-  //     camera.heading = getRandomInt(1, 45); //need to keep this number runder 360 im sure
-  //     camera.pitch = getRandomInt(1, 50); // how high can this number go?
-  //     camera.altitude = getRandomInt(1500, 2500); //what makes sense here?
-  //     // camera.zoom -= 1;
-  //     // camera.center.latitude += 0.05;
-  //     if (photo.node.location?.latitude) {
-  //       camera.center.latitude = photo.node.location.latitude;
-  //     }
-  //     console.log('map animated to this photo', JSON.stringify(photo));
-  //     map.animateCamera(camera, {duration: 10000});
-  //   } else {
-  //     console.log('no map');
-  //   }
-  // };
-
-  const testAnimate = async () => {
+  const animateCamera = async (photo: CameraRoll.PhotoIdentifier) => {
+    setCurrentPhoto(photo);
     if (map) {
       const camera = await map.getCamera();
-      console.log('camera', camera);
-
       // camera.heading += 45;
       // camera.pitch += 50;
       // camera.altitude -= 2000;
 
       camera.heading = getRandomInt(1, 45); //need to keep this number runder 360 im sure
       camera.pitch = getRandomInt(1, 50); // how high can this number go?
-      camera.altitude = getRandomInt(1500, 2500); //what makes sense here?
+      camera.altitude = getRandomInt(1500, 2000); //what makes sense here?
       // camera.zoom -= 1;
       // camera.center.latitude += 0.05;
+      if (photo.node.location?.latitude && photo.node.location?.longitude) {
+        camera.center = {
+          latitude: photo.node.location.latitude,
+          longitude: photo.node.location.longitude,
+        };
+      }
+      // console.log('animated to image', JSON.stringify(photo));
+      // console.log('animated to index', currentIndex);
       map.animateCamera(camera, {duration: 10000});
+      setCurrentIndex(currentIndex + 1);
     } else {
       console.log('no map');
     }
   };
 
-  // const renderImage = (asset: CameraRoll.PhotoIdentifier) => {
-  //   const imageSize = 150;
-  //   const imageStyle = [styles.image, {width: imageSize, height: imageSize}];
-  //   return <Image source={asset.node.image} style={imageStyle} />;
+  // const testAnimate = async () => {
+  //   if (map) {
+  //     const camera = await map.getCamera();
+  //     console.log('camera', camera);
+  //     // camera.heading += 45;
+  //     // camera.pitch += 50;
+  //     // camera.altitude -= 2000;
+  //     camera.heading = getRandomInt(1, 45); //need to keep this number runder 360 im sure
+  //     camera.pitch = getRandomInt(1, 50); // how high can this number go?
+  //     camera.altitude = getRandomInt(1500, 2500); //what makes sense here?
+  //     // camera.zoom -= 1;
+  //     // camera.center.latitude += 0.05;
+  //     map.animateCamera(camera, {duration: 10000});
+  //   } else {
+  //     console.log('no map');
+  //   }
   // };
+
+  const renderImage = () => {
+    const imageSize = 500;
+    const imageStyle = [styles.image, {width: imageSize, height: imageSize}];
+    if (currentPhoto) {
+      return <Image source={currentPhoto.node.image} style={imageStyle} />;
+    }
+  };
 
   return (
     <SafeAreaView>
@@ -148,16 +141,22 @@ function App() {
         <MapView
           scrollEnabled={false}
           ref={(ref) => {
-            console.log('on ref set');
-            map = ref;
+            if (map == null) {
+              console.log('on ref set');
+              map = ref;
+            }
           }}
-          // mapType={'hybrid'}
+          mapType={'standard'}
           style={styles.map}
-          region={{
-            latitude: 32.71795444867246,
-            longitude: -117.1587698462926,
-            latitudeDelta: 0.015,
-            longitudeDelta: 0.0121,
+          initialCamera={{
+            pitch: 0,
+            heading: 0,
+            altitude: 5000,
+            center: {
+              latitude: 32.71555153389759,
+              longitude: -117.16120383421932,
+            },
+            zoom: 0,
           }}></MapView>
         <TouchableOpacity
           hasTVPreferredFocus={true}
@@ -165,9 +164,7 @@ function App() {
           onPress={handleButtonPress}>
           <Text style={styles.sectionTitle}>Get Photos</Text>
         </TouchableOpacity>
-        <TouchableOpacity hasTVPreferredFocus={false} style={styles.testButton}>
-          <Text style={styles.sectionTitle}>Button 2</Text>
-        </TouchableOpacity>
+        {renderImage()}
       </View>
     </SafeAreaView>
   );
@@ -175,13 +172,8 @@ function App() {
 
 const styles = StyleSheet.create({
   container: {
-    // ...StyleSheet.absoluteFillObject,
     width: '100%',
     height: '100%',
-    // backgroundColor: 'green',
-    // width: 800,
-    // justifyContent: 'flex-end',
-    // alignItems: 'center',
   },
   map: {
     ...StyleSheet.absoluteFillObject,
@@ -197,6 +189,9 @@ const styles = StyleSheet.create({
     fontSize: 24,
     fontWeight: '600',
     color: Colors.black,
+  },
+  image: {
+    margin: 4,
   },
 });
 
