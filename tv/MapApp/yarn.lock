@@ -5611,9 +5611,9 @@ react-is@^16.12.0, react-is@^16.8.1, react-is@^16.8.4, react-is@^16.8.6:
   resolved "https://registry.yarnpkg.com/react-is/-/react-is-16.13.1.tgz#789729a4dc36de2999dc156dd6c1d9c18cea56a4"
   integrity sha512-24e6ynE2H+OKt4kqsOvNd8kBpV65zoxbA4BVsEOB3ARVWQki/DHzaUoC5KuON/BiccDaCCTZBuOcfZs70kR8bQ==
 
-"react-native-maps@https://github.com/nvolpe/react-native-maps#fiveNine":
+"react-native-maps@https://github.com/nvolpe/react-native-maps#photoMapApp":
   version "0.27.1"
-  resolved "https://github.com/nvolpe/react-native-maps#a914938bd132207ade71921c41b7d2acc0480269"
+  resolved "https://github.com/nvolpe/react-native-maps#542107259ff55d3a0a39119a3399c1b8f2dba3ab"
   dependencies:
     "@types/geojson" "^7946.0.7"
 

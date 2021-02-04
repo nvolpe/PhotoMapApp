@@ -16,7 +16,7 @@ const ImageData: CameraRoll.PhotoIdentifiersPage = {
         },
         image: {
           playableDuration: null,
-          uri: 'src/testData/testImages/test1.jpg',
+          uri: 'xxx.jpg',
           filename: 'PXL_20201114_235103605.jpg',
           width: 4032,
           height: 3024,
@@ -38,7 +38,7 @@ const ImageData: CameraRoll.PhotoIdentifiersPage = {
         },
         image: {
           playableDuration: null,
-          uri: 'src/testData/testImages/test1.jpg',
+          uri: 'xxx.jpg',
           filename: 'PXL_20201031_231107130.MP.jpg',
           width: 3024,
           height: 4032,
@@ -53,14 +53,14 @@ const ImageData: CameraRoll.PhotoIdentifiersPage = {
         type: 'image',
         location: {
           speed: 0,
-          latitude: 32.799458333333334,
+          latitude: 40.799458333333334,
           longitude: -117.258225,
           heading: 0,
           altitude: 23,
         },
         image: {
           playableDuration: null,
-          uri: 'src/testData/testImages/test1.jpg',
+          uri: 'xxx.jpg',
           filename: 'MVIMG_20200904_191054.jpg',
           width: 3264,
           height: 2448,
@@ -76,7 +76,7 @@ const ImageData: CameraRoll.PhotoIdentifiersPage = {
         location: null,
         image: {
           playableDuration: null,
-          uri: 'src/testData/testImages/test1.jpg',
+          uri: 'xxx.jpg',
           filename: 'IMG_0064.JPG',
           width: 2448,
           height: 3264,
@@ -98,7 +98,7 @@ const ImageData: CameraRoll.PhotoIdentifiersPage = {
         },
         image: {
           playableDuration: null,
-          uri: 'ph://35426858-DEB7-4124-A6A1-7235226EDE79/L0/001',
+          uri: 'xxx.jpg',
           filename: 'IMG_0023.JPG',
           width: 2448,
           height: 3264,
@@ -120,7 +120,7 @@ const ImageData: CameraRoll.PhotoIdentifiersPage = {
         },
         image: {
           playableDuration: null,
-          uri: 'src/testData/testImages/test1.jpg',
+          uri: 'xxx.jpg',
           filename: 'IMG_0022.JPG',
           width: 2448,
           height: 3264,
@@ -142,7 +142,7 @@ const ImageData: CameraRoll.PhotoIdentifiersPage = {
         },
         image: {
           playableDuration: null,
-          uri: 'src/testData/testImages/test1.jpg',
+          uri: 'xxx.jpg',
           filename: 'IMG_0021.JPG',
           width: 2448,
           height: 3264,
@@ -157,4 +157,4 @@ const ImageData: CameraRoll.PhotoIdentifiersPage = {
     end_cursor: 'ph://4151A202-1C04-4AA6-99A7-F55B92A7C3AE/L0/001',
   },
 };
-export default ImageData;
+export {ImageData};

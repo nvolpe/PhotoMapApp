@@ -18,12 +18,12 @@ const AppleMap = (props: Props) => {
   let map: MapView | null = null;
 
   // if i silence that warning, it says useCallback. i should figure out what that is
-  useEffect(() => {
-    async function animate() {
-      await animateCamera(props.latLng);
-    }
-    animate();
-  }, [props.latLng]); // eslint-disable-line react-hooks/exhaustive-deps
+  // useEffect(() => {
+  //   async function animate() {
+  //     await animateCamera(props.latLng);
+  //   }
+  //   animate();
+  // }, [props.latLng]); // eslint-disable-line react-hooks/exhaustive-deps
 
   const getRandomInt = (min: number, max: number) => {
     min = Math.ceil(min);

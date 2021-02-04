@@ -1,8 +1,6 @@
 import React from 'react';
 import {StyleSheet, Image, View} from 'react-native';
-
 import CameraRoll from '@react-native-community/cameraroll';
-// import ImageData from '../../testData/ImageData';
 import {Colors} from 'react-native/Libraries/NewAppScreen';
 
 interface Props {
@@ -16,7 +14,15 @@ const ImageView = (props: Props) => {
     const imageSize = 500;
     const imageStyle = [styles.image, {width: imageSize, height: imageSize}];
     if (photo) {
-      return <Image source={photo.node.image} style={imageStyle} />;
+      return (
+        <Image
+          source={require('../../testData/testImages/test1.jpg')}
+          style={imageStyle}
+        />
+      );
+    } else {
+      // if we have a missing image.. show it here?
+      return <View />;
     }
   };
 
@@ -34,6 +40,11 @@ const styles = StyleSheet.create({
     fontSize: 24,
     fontWeight: '600',
     color: Colors.black,
+  },
+  fakeImageStyle: {
+    width: 500,
+    height: 500,
+    backgroundColor: Colors.black,
   },
   image: {
     margin: 4,

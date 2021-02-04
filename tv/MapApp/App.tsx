@@ -17,13 +17,14 @@ import {
 } from 'react-native';
 import {Colors} from 'react-native/Libraries/NewAppScreen';
 import CameraRoll from '@react-native-community/cameraroll';
-import ImageData from './src/testData/ImageData';
 import {LatLng} from 'react-native-maps';
+
+import {ImageData} from './src/testData/ImageData';
 
 import AppleMap from './src/components/map/AppleMap';
 import ImageView from './src/components/image/ImageView';
 
-const useIcloudPhotos = true;
+const useIcloudPhotos = false;
 
 interface PhotoAlbum {
   photos: CameraRoll.PhotoIdentifiersPage | null;
@@ -55,10 +56,10 @@ function App() {
       setPhotos({photos: output});
       console.log('Got Photos', output);
     } else {
-      console.log('got photos');
       let testPhotos: PhotoAlbum = {
-        photos: ImageData, //fix type in test file
+        photos: ImageData,
       };
+      // console.log('Got Photos', testPhotos.photos?.edges[1]);
       setPhotos({photos: testPhotos.photos});
     }
   };
