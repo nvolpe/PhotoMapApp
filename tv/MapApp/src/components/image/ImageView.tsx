@@ -16,13 +16,14 @@ const ImageView = (props: Props) => {
     if (photo) {
       return (
         <Image
+          testID={'image'}
           source={require('../../testData/testImages/test1.jpg')}
           style={imageStyle}
         />
       );
     } else {
       // if we have a missing image.. show it here?
-      return <View />;
+      return <View testID={'emptyView'} />;
     }
   };
 

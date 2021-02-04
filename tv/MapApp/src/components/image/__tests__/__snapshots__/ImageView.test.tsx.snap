@@ -1,0 +1,47 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Image view does not render an image view without a photo 1`] = `
+<View
+  style={
+    Object {
+      "height": "100%",
+      "width": "100%",
+    }
+  }
+>
+  <View
+    testID="emptyView"
+  />
+</View>
+`;
+
+exports[`Image view renders correctly with a valid image 1`] = `
+<View
+  style={
+    Object {
+      "height": "100%",
+      "width": "100%",
+    }
+  }
+>
+  <Image
+    source={
+      Object {
+        "testUri": "../../../src/testData/testImages/test1.jpg",
+      }
+    }
+    style={
+      Array [
+        Object {
+          "margin": 4,
+        },
+        Object {
+          "height": 500,
+          "width": 500,
+        },
+      ]
+    }
+    testID="image"
+  />
+</View>
+`;
