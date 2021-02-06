@@ -59,7 +59,7 @@ function App() {
       let testPhotos: PhotoAlbum = {
         photos: ImageData,
       };
-      // console.log('Got Photos', testPhotos.photos?.edges[1]);
+      console.log('Got Photos', testPhotos.photos?.edges[1]);
       setPhotos({photos: testPhotos.photos});
     }
   };

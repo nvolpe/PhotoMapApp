@@ -1,0 +1,73 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Map view renders correctly 1`] = `
+<AIRMap
+  handlePanDrag={false}
+  initialCamera={
+    Object {
+      "altitude": 5000,
+      "center": Object {
+        "latitude": 32.71555153389759,
+        "longitude": -117.16120383421932,
+      },
+      "heading": 0,
+      "pitch": 0,
+      "zoom": 0,
+    }
+  }
+  initialRegion={null}
+  mapType="standard"
+  onChange={[Function]}
+  onLayout={[Function]}
+  onMapReady={[Function]}
+  onMarkerPress={[Function]}
+  region={null}
+  scrollEnabled={false}
+  style={
+    Object {
+      "bottom": 0,
+      "left": 0,
+      "position": "absolute",
+      "right": 0,
+      "top": 0,
+    }
+  }
+  testID="map"
+/>
+`;
+
+exports[`Map view renders the right initial location 1`] = `
+<AIRMap
+  handlePanDrag={false}
+  initialCamera={
+    Object {
+      "altitude": 5000,
+      "center": Object {
+        "latitude": 32.71555153389759,
+        "longitude": -117.16120383421932,
+      },
+      "heading": 0,
+      "pitch": 0,
+      "zoom": 0,
+    }
+  }
+  initialRegion={null}
+  mapType="standard"
+  onChange={[Function]}
+  onLayout={[Function]}
+  onMapReady={[Function]}
+  onMarkerPress={[Function]}
+  region={null}
+  scrollEnabled={false}
+  style={
+    Object {
+      "bottom": 0,
+      "left": 0,
+      "position": "absolute",
+      "right": 0,
+      "top": 0,
+    }
+  }
+  testID="map"
+/>
+`;
