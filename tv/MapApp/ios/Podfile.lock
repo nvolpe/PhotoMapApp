@@ -171,6 +171,8 @@ PODS:
     - React
   - react-native-maps (0.27.1):
     - React-Core
+  - react-native-safe-area-context (3.1.9):
+    - React-Core
   - React-RCTAnimation (0.63.3-0):
     - FBReactNativeSpec (= 0.63.3-0)
     - Folly (= 2020.01.13.00)
@@ -223,6 +225,12 @@ PODS:
     - React-Core (= 0.63.3-0)
     - React-cxxreact (= 0.63.3-0)
     - React-jsi (= 0.63.3-0)
+  - RNCMaskedView (0.1.10):
+    - React
+  - RNGestureHandler (1.10.1):
+    - React-Core
+  - RNScreens (2.17.1):
+    - React-Core
   - Yoga (1.14.0)
 
 DEPENDENCIES:
@@ -245,6 +253,7 @@ DEPENDENCIES:
   - React-jsinspector (from `../node_modules/react-native/ReactCommon/jsinspector`)
   - "react-native-cameraroll (from `../node_modules/@react-native-community/cameraroll`)"
   - react-native-maps (from `../node_modules/react-native-maps`)
+  - react-native-safe-area-context (from `../node_modules/react-native-safe-area-context`)
   - React-RCTAnimation (from `../node_modules/react-native/Libraries/NativeAnimation`)
   - React-RCTBlob (from `../node_modules/react-native/Libraries/Blob`)
   - React-RCTImage (from `../node_modules/react-native/Libraries/Image`)
@@ -253,6 +262,9 @@ DEPENDENCIES:
   - React-RCTSettings (from `../node_modules/react-native/Libraries/Settings`)
   - React-RCTText (from `../node_modules/react-native/Libraries/Text`)
   - ReactCommon/turbomodule/core (from `../node_modules/react-native/ReactCommon`)
+  - "RNCMaskedView (from `../node_modules/@react-native-community/masked-view`)"
+  - RNGestureHandler (from `../node_modules/react-native-gesture-handler`)
+  - RNScreens (from `../node_modules/react-native-screens`)
   - Yoga (from `../node_modules/react-native/ReactCommon/yoga`)
 
 SPEC REPOS:
@@ -294,6 +306,8 @@ EXTERNAL SOURCES:
     :path: "../node_modules/@react-native-community/cameraroll"
   react-native-maps:
     :path: "../node_modules/react-native-maps"
+  react-native-safe-area-context:
+    :path: "../node_modules/react-native-safe-area-context"
   React-RCTAnimation:
     :path: "../node_modules/react-native/Libraries/NativeAnimation"
   React-RCTBlob:
@@ -310,6 +324,12 @@ EXTERNAL SOURCES:
     :path: "../node_modules/react-native/Libraries/Text"
   ReactCommon:
     :path: "../node_modules/react-native/ReactCommon"
+  RNCMaskedView:
+    :path: "../node_modules/@react-native-community/masked-view"
+  RNGestureHandler:
+    :path: "../node_modules/react-native-gesture-handler"
+  RNScreens:
+    :path: "../node_modules/react-native-screens"
   Yoga:
     :path: "../node_modules/react-native/ReactCommon/yoga"
 
@@ -332,6 +352,7 @@ SPEC CHECKSUMS:
   React-jsinspector: 4f9ec704391789e4cfd5d6ef3da36a53ed6d17c5
   react-native-cameraroll: e77bcf08116e6a4d5bd9e51568d653e404fe23a2
   react-native-maps: add81caa409d2afd268530ee20a66066fc079af0
+  react-native-safe-area-context: b6e0e284002381d2ff29fa4fff42b4d8282e3c94
   React-RCTAnimation: aec69e10c3f7126c1c353b416613619581d5a6b1
   React-RCTBlob: e6e33514f6123e956ef17cb6253b6326bf949548
   React-RCTImage: 687162d7cd544cd4ed0dbf56ffd58db896faf980
@@ -340,6 +361,9 @@ SPEC CHECKSUMS:
   React-RCTSettings: 5e8889a9646c8c18432c1c4a24682f8ce0b63e2d
   React-RCTText: fdf1d98de8e6556d35f837ac9121464363e10ad8
   ReactCommon: 13cb5bbb74ee1c844bc14aead4d8da214a7d3374
+  RNCMaskedView: 5a8ec07677aa885546a0d98da336457e2bea557f
+  RNGestureHandler: 5e58135436aacc1c5d29b75547d3d2b9430d052c
+  RNScreens: b6c9607e6fe47c1b6e2f1910d2acd46dd7ecea3a
   Yoga: 5d20be5a2c1c18789d3181cbbff241010ff959e7
 
 PODFILE CHECKSUM: 1d7025bb7ac031557f34965fe7ff2fafa8b31c8a
