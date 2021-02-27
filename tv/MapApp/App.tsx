@@ -7,8 +7,7 @@
  */
 
 import React from 'react';
-// import {useState, useEffect} from 'react';
-import {SafeAreaView, TouchableOpacity, StyleSheet} from 'react-native';
+import {TouchableOpacity, StyleSheet} from 'react-native';
 import 'react-native-gesture-handler';
 import {NavigationContainer} from '@react-navigation/native';
 import {createStackNavigator} from '@react-navigation/stack';
