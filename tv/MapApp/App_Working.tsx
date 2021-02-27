@@ -115,10 +115,8 @@ const styles = StyleSheet.create({
   matchParent: {
     width: '100%',
     height: '100%',
-    // backgroundColor: 'gray',
   },
   testButton: {
-    // flex: 1,
     width: 100,
     height: 100,
     backgroundColor: 'green',
