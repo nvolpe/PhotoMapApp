@@ -13,28 +13,29 @@ import {NavigationContainer} from '@react-navigation/native';
 import {createStackNavigator} from '@react-navigation/stack';
 import {View, Text} from 'react-native';
 import MapScreen from './src/screens/mapScreen/MapScreen';
+import HomeScreen from './src/screens/homeScreen/HomeScreen';
 
-function HomeScreen({navigation}: any) {
-  return (
-    <View style={{flex: 1, alignItems: 'center', justifyContent: 'center'}}>
-      <Text>Home Screen Test</Text>
-      <TouchableOpacity
-        // hasTVPreferredFocus={true}
-        style={styles.testButton}
-        onBlur={() => {
-          console.log('Home on blur');
-        }}
-        onFocus={() => {
-          console.log('Home on focus');
-        }}
-        onPress={() => {
-          navigation.navigate('Details');
-        }}>
-        <Text>Nav test</Text>
-      </TouchableOpacity>
-    </View>
-  );
-}
+// function HomeScreen({navigation}: any) {
+//   return (
+//     <View style={{flex: 1, alignItems: 'center', justifyContent: 'center'}}>
+//       <Text>Home Screen Test</Text>
+//       <TouchableOpacity
+//         // hasTVPreferredFocus={true}
+//         style={styles.testButton}
+//         onBlur={() => {
+//           console.log('Home on blur');
+//         }}
+//         onFocus={() => {
+//           console.log('Home on focus');
+//         }}
+//         onPress={() => {
+//           navigation.navigate('Details');
+//         }}>
+//         <Text>Nav test</Text>
+//       </TouchableOpacity>
+//     </View>
+//   );
+// }
 
 function DetailsScreen({navigation}: any) {
   return (
