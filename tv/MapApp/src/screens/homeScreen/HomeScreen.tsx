@@ -19,18 +19,13 @@ import {Colors} from 'react-native/Libraries/NewAppScreen';
 // import CameraRoll from '@react-native-community/cameraroll';
 import {StackNavigationProp} from '@react-navigation/stack';
 import {RouteProp} from '@react-navigation/native';
+import {RootStackParamList} from '../../../App';
 
 // import {ImageData} from '../../testData/ImageData';
 // const useIcloudPhotos = false;
 // interface PhotoAlbum {
 //   photos: CameraRoll.PhotoIdentifiersPage | null;
 // }
-
-type RootStackParamList = {
-  Home: undefined;
-  Details: {testId: string};
-  Feed: {sort: 'latest' | 'top'} | undefined;
-};
 
 type HomeScreenRouteProp = RouteProp<RootStackParamList, 'Home'>;
 type HomeScreenNavigationProp = StackNavigationProp<RootStackParamList, 'Home'>;
@@ -41,47 +36,8 @@ type Props = {
 };
 
 function HomeScreen({navigation}: Props) {
-  // const [photos, setPhotos] = useState<PhotoAlbum>({
-  //   photos: null,
-  // });
-
-  // const requestPhotos = async () => {
-  //   console.log('requestPhotos');
-  //   const params = {
-  //     first: 20,
-  //   };
-
-  //   if (useIcloudPhotos) {
-  //     const output: CameraRoll.PhotoIdentifiersPage = await CameraRoll.getPhotos(
-  //       params,
-  //     );
-  //     setPhotos({photos: output});
-  //     console.log('Got Photos', output);
-  //   } else {
-  //     let testPhotos: PhotoAlbum = {
-  //       photos: ImageData,
-  //     };
-  //     console.log('Got Photos', testPhotos.photos?.edges[1]);
-  //     setPhotos({photos: testPhotos.photos});
-  //   }
-  // };
-
-  // useEffect(() => {
-  //   async function getPhotos() {
-  //     await requestPhotos();
-  //   }
-  //   getPhotos();
-  // }, []);
-
-  // const handleButtonPress = async () => {
-  //   if (photos.photos?.edges[currentIndex] && currentIndex < 7) {
-  //     let photo = photos.photos?.edges[currentIndex];
-  //     setCurrentPhoto(photo);
-  //   }
-  // };
-
   const handleButtonPress = async () => {
-    navigation.navigate('Details', {testId: 'foo'});
+    navigation.navigate('Album', {testId: 'foo'});
   };
 
   return (
