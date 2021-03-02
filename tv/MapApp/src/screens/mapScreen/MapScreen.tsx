@@ -24,13 +24,28 @@ import {ImageData} from '../../testData/ImageData';
 import AppleMap from '../../components/map/AppleMap';
 import ImageView from '../../components/image/ImageView';
 
+import {StackNavigationProp} from '@react-navigation/stack';
+import {RouteProp} from '@react-navigation/native';
+import {RootStackParamList} from '../../../App';
+
 const useIcloudPhotos = false;
+
+type MapScreenRouteProp = RouteProp<RootStackParamList, 'MapScreen'>;
+type MapScreenNavigationProp = StackNavigationProp<
+  RootStackParamList,
+  'MapScreen'
+>;
+
+type Props = {
+  route: MapScreenRouteProp;
+  navigation: MapScreenNavigationProp;
+};
 
 interface PhotoAlbum {
   photos: CameraRoll.PhotoIdentifiersPage | null;
 }
 
-function MapScreen() {
+function MapScreen({navigation}: Props) {
   const [photos, setPhotos] = useState<PhotoAlbum>({
     photos: null,
   });
