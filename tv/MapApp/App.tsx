@@ -7,7 +7,6 @@
  */
 
 import React from 'react';
-import {TouchableOpacity, StyleSheet} from 'react-native';
 import 'react-native-gesture-handler';
 import {NavigationContainer} from '@react-navigation/native';
 import {createStackNavigator} from '@react-navigation/stack';
@@ -37,18 +36,5 @@ function App() {
     </NavigationContainer>
   );
 }
-
-// const styles = StyleSheet.create({
-//   container: {
-//     width: '100%',
-//     height: '100%',
-//   },
-//   testButton: {
-//     width: 100,
-//     height: 100,
-//     borderColor: 'yellow',
-//     backgroundColor: 'purple',
-//   },
-// });
 
 export default App;
