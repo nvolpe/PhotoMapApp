@@ -167,8 +167,8 @@ PODS:
     - React-cxxreact (= 0.63.3-0)
     - React-jsi (= 0.63.3-0)
   - React-jsinspector (0.63.3-0)
-  - react-native-cameraroll (4.0.1):
-    - React
+  - react-native-cameraroll (4.0.2):
+    - React-Core
   - react-native-maps (0.27.1):
     - React-Core
   - react-native-safe-area-context (3.1.9):
@@ -227,7 +227,7 @@ PODS:
     - React-jsi (= 0.63.3-0)
   - RNCMaskedView (0.1.10):
     - React
-  - RNGestureHandler (1.10.1):
+  - RNGestureHandler (1.10.3):
     - React-Core
   - RNReanimated (1.13.2):
     - React-Core
@@ -355,7 +355,7 @@ SPEC CHECKSUMS:
   React-jsi: 5ce5b7ca8fab0ad99f105eed24885378f58d413c
   React-jsiexecutor: ed40f5a2002cdc5c9551087d2ad07312f7692c8a
   React-jsinspector: 4f9ec704391789e4cfd5d6ef3da36a53ed6d17c5
-  react-native-cameraroll: e77bcf08116e6a4d5bd9e51568d653e404fe23a2
+  react-native-cameraroll: 57e3f4365678faa41a30eb6876248ac2518f75bb
   react-native-maps: add81caa409d2afd268530ee20a66066fc079af0
   react-native-safe-area-context: b6e0e284002381d2ff29fa4fff42b4d8282e3c94
   React-RCTAnimation: aec69e10c3f7126c1c353b416613619581d5a6b1
@@ -367,7 +367,7 @@ SPEC CHECKSUMS:
   React-RCTText: fdf1d98de8e6556d35f837ac9121464363e10ad8
   ReactCommon: 13cb5bbb74ee1c844bc14aead4d8da214a7d3374
   RNCMaskedView: 5a8ec07677aa885546a0d98da336457e2bea557f
-  RNGestureHandler: 5e58135436aacc1c5d29b75547d3d2b9430d052c
+  RNGestureHandler: a479ebd5ed4221a810967000735517df0d2db211
   RNReanimated: e03f7425cb7a38dcf1b644d680d1bfc91c3337ad
   RNScreens: 62211832af51e0aebcf6e8c36bcf7dd65592f244
   Yoga: 5d20be5a2c1c18789d3181cbbff241010ff959e7

@@ -25,23 +25,28 @@ interface Props {
 const AppleMap = (props: Props) => {
   let map: MapView | null = null;
 
-  // const myTVEventHandler = (event: HWKeyEvent) => {
-  //   // works without touchable
-  //   // not seeing swipe events on simulator
-  //   // are swipes from react-navigatin stealing
-  //   // console.log('event', event);
-  //   console.log(
-  //     '' + event.eventType + ' ' + event.eventKeyAction + ' ' + event.tag,
-  //   );
+  const myTVEventHandler = (event: HWKeyEvent) => {
+    // works without touchable
+    // not seeing swipe events on simulator
+    // are swipes from react-navigatin stealing
+    // console.log('event', event);
+    console.log(
+      'map view: ' +
+        event.eventType +
+        ' ' +
+        event.eventKeyAction +
+        ' ' +
+        event.tag,
+    );
 
-  //   // if (event.eventType === 'up' || event.eventType === 'swipeUp') {
-  //   //   adjustZoomUp();
-  //   // } else if (event.eventType === 'down' || event.eventType === 'swipeDown') {
-  //   //   adjustZoomDown();
-  //   // }
-  // };
+    if (event.eventType === 'up' || event.eventType === 'swipeUp') {
+      adjustZoomUp();
+    } else if (event.eventType === 'down' || event.eventType === 'swipeDown') {
+      adjustZoomDown();
+    }
+  };
 
-  // useTVEventHandler(myTVEventHandler);
+  useTVEventHandler(myTVEventHandler);
 
   // remember I could set this outside of the function component so that it
   // doesnt create a new callback on each render. (avoids lint warning)
@@ -102,7 +107,7 @@ const AppleMap = (props: Props) => {
   };
 
   useEffect(() => {
-    // animateMap(props.latLng);
+    animateMap(props.latLng);
   }, [props.latLng, animateMap]);
 
   // useEffect(() => {
