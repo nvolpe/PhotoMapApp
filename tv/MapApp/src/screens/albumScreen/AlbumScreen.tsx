@@ -13,6 +13,8 @@ import {
   View,
   Text,
   TouchableOpacity,
+  useTVEventHandler,
+  HWKeyEvent,
 } from 'react-native';
 import {Colors} from 'react-native/Libraries/NewAppScreen';
 import {StackNavigationProp} from '@react-navigation/stack';
@@ -70,8 +72,24 @@ function AlbumScreen({navigation}: Props) {
   //   }
   // };
 
+  // const myTVEventHandler = (event: HWKeyEvent) => {
+  //   // works without touchable
+  //   // not seeing swipe events on simulator
+  //   // are swipes from react-navigatin stealing
+  //   // console.log('event', event);
+  //   console.log(
+  //     '' + event.eventType + ' ' + event.eventKeyAction + ' ' + event.tag,
+  //   );
+  // };
+
+  // useTVEventHandler(myTVEventHandler);
+
   const handleButtonPress = async () => {
-    navigation.navigate('MapScreen', {anotherTest: 'foo'});
+    // navigation.navigate('MapScreen', {anotherTest: 'foo'});
+    navigation.reset({
+      index: 0,
+      routes: [{name: 'MapScreen'}],
+    });
   };
 
   return (
@@ -94,7 +112,6 @@ const styles = StyleSheet.create({
     height: '100%',
   },
   testButton: {
-    // flex: 1,
     width: 100,
     height: 100,
     borderColor: 'yellow',

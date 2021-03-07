@@ -14,6 +14,8 @@ import {
   View,
   Text,
   TouchableOpacity,
+  useTVEventHandler,
+  HWKeyEvent,
 } from 'react-native';
 import {Colors} from 'react-native/Libraries/NewAppScreen';
 import CameraRoll from '@react-native-community/cameraroll';
@@ -50,13 +52,29 @@ function MapScreen({navigation}: Props) {
     photos: null,
   });
   const [currentIndex, setCurrentIndex] = useState<number>(0);
-
   const [
     currentPhoto,
     setCurrentPhoto,
   ] = useState<CameraRoll.PhotoIdentifier | null>(null);
 
   const [latLng, setLatLng] = useState<LatLng | null>(null);
+
+  console.log('map screen inti');
+
+  const myTVEventHandler = (event: HWKeyEvent) => {
+    // works without touchable
+    // not seeing swipe events on simulator
+    // are swipes from react-navigatin stealing
+    // console.log('event', event);
+    console.log(
+      '' + event.eventType + ' ' + event.eventKeyAction + ' ' + event.tag,
+    );
+    if (event.eventType === 'select') {
+      handleButtonPress();
+    }
+  };
+
+  useTVEventHandler(myTVEventHandler);
 
   const requestPhotos = async () => {
     console.log('requestPhotos');

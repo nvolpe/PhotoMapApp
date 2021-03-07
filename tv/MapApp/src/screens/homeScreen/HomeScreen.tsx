@@ -60,7 +60,6 @@ const styles = StyleSheet.create({
     height: '100%',
   },
   testButton: {
-    // flex: 1,
     width: 100,
     height: 100,
     borderColor: 'yellow',

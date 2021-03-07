@@ -14,6 +14,7 @@ import {createStackNavigator} from '@react-navigation/stack';
 import MapScreen from './src/screens/mapScreen/MapScreen';
 import HomeScreen from './src/screens/homeScreen/HomeScreen';
 import AlbumScreen from './src/screens/albumScreen/AlbumScreen';
+import 'react-native/tvos-types.d';
 
 const Stack = createStackNavigator();
 
@@ -29,9 +30,21 @@ function App() {
       <Stack.Navigator
         initialRouteName="Home"
         screenOptions={{headerShown: false}}>
-        <Stack.Screen name="Home" component={HomeScreen} />
-        <Stack.Screen name="Album" component={AlbumScreen} />
-        <Stack.Screen name="MapScreen" component={MapScreen} />
+        <Stack.Screen
+          name="Home"
+          component={HomeScreen}
+          options={{gestureEnabled: false}}
+        />
+        <Stack.Screen
+          name="Album"
+          component={AlbumScreen}
+          options={{gestureEnabled: false}}
+        />
+        <Stack.Screen
+          name="MapScreen"
+          component={MapScreen}
+          options={{gestureEnabled: false}}
+        />
       </Stack.Navigator>
     </NavigationContainer>
   );

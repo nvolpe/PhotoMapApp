@@ -7,15 +7,41 @@
  */
 
 import React, {useEffect, useCallback} from 'react';
-import {StyleSheet} from 'react-native';
+import {
+  StyleSheet,
+  useTVEventHandler,
+  HWKeyEvent,
+  View,
+  Text,
+  TouchableOpacity,
+} from 'react-native';
 import MapView, {LatLng} from 'react-native-maps';
 
 interface Props {
   latLng: LatLng | null;
+  // onZoom: () => any;
 }
 
 const AppleMap = (props: Props) => {
   let map: MapView | null = null;
+
+  // const myTVEventHandler = (event: HWKeyEvent) => {
+  //   // works without touchable
+  //   // not seeing swipe events on simulator
+  //   // are swipes from react-navigatin stealing
+  //   // console.log('event', event);
+  //   console.log(
+  //     '' + event.eventType + ' ' + event.eventKeyAction + ' ' + event.tag,
+  //   );
+
+  //   // if (event.eventType === 'up' || event.eventType === 'swipeUp') {
+  //   //   adjustZoomUp();
+  //   // } else if (event.eventType === 'down' || event.eventType === 'swipeDown') {
+  //   //   adjustZoomDown();
+  //   // }
+  // };
+
+  // useTVEventHandler(myTVEventHandler);
 
   // remember I could set this outside of the function component so that it
   // doesnt create a new callback on each render. (avoids lint warning)
@@ -30,7 +56,10 @@ const AppleMap = (props: Props) => {
 
         camera.heading = getRandomInt(1, 45); //need to keep this number runder 360 im sure
         camera.pitch = getRandomInt(1, 50); // how high can this number go?
-        camera.altitude = getRandomInt(1500, 2000); //what makes sense here?
+        // camera.altitude = getRandomInt(1500, 2000); //what makes sense here?
+
+        camera.altitude = 1500; //hard coded test
+
         // camera.zoom -= 1;
         // camera.center.latitude += 0.05;
         if (latLng && latLng.latitude && latLng.longitude) {
@@ -50,9 +79,35 @@ const AppleMap = (props: Props) => {
     [map],
   );
 
+  const adjustZoomDown = async () => {
+    if (map) {
+      const camera = await map.getCamera();
+
+      camera.altitude = camera.altitude - 1000; //what makes sense here?
+      map.animateCamera(camera, {duration: 10000});
+    } else {
+      console.log('no map');
+    }
+  };
+
+  const adjustZoomUp = async () => {
+    if (map) {
+      const camera = await map.getCamera();
+
+      camera.altitude = camera.altitude + 1000; //what makes sense here?
+      map.animateCamera(camera, {duration: 10000});
+    } else {
+      console.log('no map');
+    }
+  };
+
   useEffect(() => {
-    animateMap(props.latLng);
+    // animateMap(props.latLng);
   }, [props.latLng, animateMap]);
+
+  // useEffect(() => {
+  //   animateMap(props.latLng);
+  // }, [props.zoomLevel, adjustZoom]);
 
   const getRandomInt = (min: number, max: number) => {
     min = Math.ceil(min);
@@ -82,6 +137,13 @@ const AppleMap = (props: Props) => {
     <MapView
       testID={'map'}
       scrollEnabled={false}
+      zoomControlEnabled={false}
+      zoomTapEnabled={false}
+      focusable={false}
+      accessible={false}
+      showsScale={false}
+      toolbarEnabled={false}
+      zoomEnabled={false}
       ref={(ref) => {
         if (map == null) {
           console.log('on ref set');
