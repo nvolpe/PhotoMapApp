@@ -10,20 +10,29 @@ import React from 'react';
 import 'react-native-gesture-handler';
 import {NavigationContainer} from '@react-navigation/native';
 import {createStackNavigator} from '@react-navigation/stack';
-// import {View, Text} from 'react-native';
 import MapScreen from './src/screens/mapScreen/MapScreen';
 import HomeScreen from './src/screens/homeScreen/HomeScreen';
 import AlbumScreen from './src/screens/albumScreen/AlbumScreen';
 import 'react-native/tvos-types.d';
 
-const Stack = createStackNavigator();
+import CameraRoll from '@react-native-community/cameraroll';
+
+// Global types and settings
+export interface PhotoAlbum {
+  photos: CameraRoll.PhotoIdentifiersPage | null;
+}
 
 export type RootStackParamList = {
   Home: undefined;
   Album: {testId: string};
-  MapScreen: {anotherTest: string};
+  MapScreen: {photos: PhotoAlbum};
 };
 
+export const useIcloudPhotos = true;
+
+// End -------------
+
+const Stack = createStackNavigator();
 function App() {
   return (
     <NavigationContainer>

@@ -16,16 +16,9 @@ import {
   TouchableOpacity,
 } from 'react-native';
 import {Colors} from 'react-native/Libraries/NewAppScreen';
-// import CameraRoll from '@react-native-community/cameraroll';
 import {StackNavigationProp} from '@react-navigation/stack';
 import {RouteProp} from '@react-navigation/native';
 import {RootStackParamList} from '../../../App';
-
-// import {ImageData} from '../../testData/ImageData';
-// const useIcloudPhotos = false;
-// interface PhotoAlbum {
-//   photos: CameraRoll.PhotoIdentifiersPage | null;
-// }
 
 type HomeScreenRouteProp = RouteProp<RootStackParamList, 'Home'>;
 type HomeScreenNavigationProp = StackNavigationProp<RootStackParamList, 'Home'>;

@@ -7,12 +7,11 @@
  */
 
 import React from 'react';
-import {useState, useEffect} from 'react';
+import {useState, useEffect, useCallback} from 'react';
 import {
   SafeAreaView,
   StyleSheet,
   View,
-  Text,
   TouchableOpacity,
   useTVEventHandler,
   HWKeyEvent,
@@ -28,9 +27,7 @@ import ImageView from '../../components/image/ImageView';
 
 import {StackNavigationProp} from '@react-navigation/stack';
 import {RouteProp} from '@react-navigation/native';
-import {RootStackParamList} from '../../../App';
-
-const useIcloudPhotos = false;
+import {RootStackParamList, PhotoAlbum} from '../../../App';
 
 type MapScreenRouteProp = RouteProp<RootStackParamList, 'MapScreen'>;
 type MapScreenNavigationProp = StackNavigationProp<
@@ -43,74 +40,47 @@ type Props = {
   navigation: MapScreenNavigationProp;
 };
 
-interface PhotoAlbum {
-  photos: CameraRoll.PhotoIdentifiersPage | null;
-}
-
-function MapScreen({navigation}: Props) {
-  const [photos, setPhotos] = useState<PhotoAlbum>({
-    photos: null,
-  });
+function MapScreen({route, navigation}: Props) {
   const [currentIndex, setCurrentIndex] = useState<number>(0);
   const [
     currentPhoto,
     setCurrentPhoto,
   ] = useState<CameraRoll.PhotoIdentifier | null>(null);
 
+  // Todo I think LatLng would want to be set to a United States zoomed out scale
+  // so that the very first update would zoom into the users first image.
   const [latLng, setLatLng] = useState<LatLng | null>(null);
-
-  console.log('map screen inti');
-
   const myTVEventHandler = (event: HWKeyEvent) => {
-    // works without touchable
-    // not seeing swipe events on simulator
-    // are swipes from react-navigatin stealing
-    // console.log('event', event);
     console.log(
       '' + event.eventType + ' ' + event.eventKeyAction + ' ' + event.tag,
     );
     if (event.eventType === 'select') {
-      handleButtonPress();
+      // eventHandlerButtonPress();
+    } else if (event.eventType === 'swipeLeft') {
+      setCurrentIndex(currentIndex - 1);
+    } else if (event.eventType === 'swipeRight') {
+      setCurrentIndex(currentIndex + 1);
     }
   };
 
   useTVEventHandler(myTVEventHandler);
 
-  const requestPhotos = async () => {
-    console.log('requestPhotos');
-    const params = {
-      first: 20,
-    };
+  const updateMapAndImage = useCallback(
+    async (currentIdx: number) => {
+      const {photos} = route.params.photos;
 
-    if (useIcloudPhotos) {
-      const output: CameraRoll.PhotoIdentifiersPage = await CameraRoll.getPhotos(
-        params,
-      );
-      setPhotos({photos: output});
-      console.log('Got Photos', output);
-    } else {
-      let testPhotos: PhotoAlbum = {
-        photos: ImageData,
-      };
-      console.log('Got Photos', testPhotos.photos?.edges[1]);
-      setPhotos({photos: testPhotos.photos});
-    }
-  };
+      if (photos && currentIdx < photos.edges.length) {
+        let photo = photos.edges[currentIdx];
+        setCurrentPhoto(photo);
+        updateMap(photo);
+      }
+    },
+    [route],
+  );
 
   useEffect(() => {
-    async function getPhotos() {
-      await requestPhotos();
-    }
-    getPhotos();
-  }, []);
-
-  const handleButtonPress = async () => {
-    if (photos.photos?.edges[currentIndex] && currentIndex < 7) {
-      let photo = photos.photos?.edges[currentIndex];
-      setCurrentPhoto(photo);
-      updateMap(photo);
-    }
-  };
+    updateMapAndImage(currentIndex);
+  }, [currentIndex, updateMapAndImage]);
 
   const updateMap = (photo: CameraRoll.PhotoIdentifier | null) => {
     if (
@@ -122,8 +92,9 @@ function MapScreen({navigation}: Props) {
         latitude: photo.node.location.latitude,
         longitude: photo.node.location.longitude,
       });
+    } else {
+      console.log('No Geo Data for Image');
     }
-    setCurrentIndex(currentIndex + 1);
   };
 
   return (
@@ -131,11 +102,11 @@ function MapScreen({navigation}: Props) {
       <View style={styles.container}>
         <AppleMap latLng={latLng} />
         <TouchableOpacity
-          hasTVPreferredFocus={true}
-          style={styles.testButton}
-          onPress={handleButtonPress}>
-          <Text style={styles.sectionTitle}>Get Photos</Text>
-        </TouchableOpacity>
+          isTVSelectable={false}
+          focusable={false}
+          hasTVPreferredFocus={false}
+          // onPress={handleButtonPress}
+          style={styles.testButton}></TouchableOpacity>
         <ImageView photo={currentPhoto} />
       </View>
     </SafeAreaView>
@@ -149,10 +120,10 @@ const styles = StyleSheet.create({
   },
   testButton: {
     // flex: 1,
-    width: 100,
-    height: 100,
-    borderColor: 'yellow',
-    backgroundColor: 'purple',
+    width: 1,
+    height: 1,
+    // borderColor: 'yellow',
+    // backgroundColor: 'purple',
   },
   sectionTitle: {
     fontSize: 24,

@@ -3,6 +3,8 @@ import {StyleSheet, Image, View} from 'react-native';
 import CameraRoll from '@react-native-community/cameraroll';
 import {Colors} from 'react-native/Libraries/NewAppScreen';
 
+import {useIcloudPhotos} from '../../../App';
+
 interface Props {
   photo: CameraRoll.PhotoIdentifier | null;
 }
@@ -11,14 +13,19 @@ const ImageView = (props: Props) => {
   const {photo} = props;
 
   const renderImage = () => {
-    const imageSize = 500;
-    const imageStyle = [styles.image, {width: imageSize, height: imageSize}];
+    // const imageSize = 500;
+    // const imageStyle = [styles.image, {width: imageSize, height: imageSize}];
     if (photo) {
       return (
         <Image
           testID={'image'}
-          source={require('../../testData/testImages/test1.jpg')}
-          style={imageStyle}
+          resizeMode={'cover'}
+          source={
+            useIcloudPhotos
+              ? {uri: photo.node.image.uri}
+              : require('../../testData/testImages/test1.jpg')
+          }
+          style={styles.imageStyle}
         />
       );
     } else {
@@ -34,20 +41,18 @@ export default ImageView;
 
 const styles = StyleSheet.create({
   container: {
-    width: '100%',
-    height: '100%',
+    width: 520,
+    height: 520,
+    backgroundColor: 'white',
   },
   sectionTitle: {
     fontSize: 24,
     fontWeight: '600',
     color: Colors.black,
   },
-  fakeImageStyle: {
+  imageStyle: {
+    margin: 10,
     width: 500,
     height: 500,
-    backgroundColor: Colors.black,
-  },
-  image: {
-    margin: 4,
   },
 });

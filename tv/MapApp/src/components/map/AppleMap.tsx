@@ -7,19 +7,11 @@
  */
 
 import React, {useEffect, useCallback} from 'react';
-import {
-  StyleSheet,
-  useTVEventHandler,
-  HWKeyEvent,
-  View,
-  Text,
-  TouchableOpacity,
-} from 'react-native';
+import {StyleSheet, useTVEventHandler, HWKeyEvent} from 'react-native';
 import MapView, {LatLng} from 'react-native-maps';
 
 interface Props {
   latLng: LatLng | null;
-  // onZoom: () => any;
 }
 
 const AppleMap = (props: Props) => {
@@ -162,8 +154,10 @@ const AppleMap = (props: Props) => {
         heading: 0,
         altitude: 5000,
         center: {
-          latitude: 32.71555153389759,
-          longitude: -117.16120383421932,
+          latitude: props.latLng ? props.latLng.latitude : 32.71555153389759,
+          longitude: props.latLng
+            ? props.latLng.longitude
+            : -117.16120383421932,
         },
         zoom: 0,
       }}></MapView>

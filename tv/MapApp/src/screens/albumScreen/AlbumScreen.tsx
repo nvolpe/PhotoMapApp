@@ -6,20 +6,20 @@
  * @flow strict-local
  */
 
-import React from 'react';
+import React, {useState, useEffect} from 'react';
 import {
   SafeAreaView,
   StyleSheet,
   View,
   Text,
   TouchableOpacity,
-  useTVEventHandler,
-  HWKeyEvent,
 } from 'react-native';
 import {Colors} from 'react-native/Libraries/NewAppScreen';
 import {StackNavigationProp} from '@react-navigation/stack';
 import {RouteProp} from '@react-navigation/native';
-import {RootStackParamList} from '../../../App';
+import CameraRoll from '@react-native-community/cameraroll';
+import {ImageData} from '../../testData/ImageData';
+import {RootStackParamList, PhotoAlbum, useIcloudPhotos} from '../../../App';
 
 type AlbumScreenRouteProp = RouteProp<RootStackParamList, 'Album'>;
 type AlbumScreenNavigationProp = StackNavigationProp<
@@ -33,62 +33,54 @@ type Props = {
 };
 
 function AlbumScreen({navigation}: Props) {
-  // const [photos, setPhotos] = useState<PhotoAlbum>({
-  //   photos: null,
-  // });
+  const [photos, setPhotos] = useState<PhotoAlbum>({
+    photos: null,
+  });
 
-  // const requestPhotos = async () => {
-  //   console.log('requestPhotos');
-  //   const params = {
-  //     first: 20,
-  //   };
+  const requestPhotos = async () => {
+    console.log('requestPhotos');
+    const params = {
+      first: 20,
+    };
 
-  //   if (useIcloudPhotos) {
-  //     const output: CameraRoll.PhotoIdentifiersPage = await CameraRoll.getPhotos(
-  //       params,
-  //     );
-  //     setPhotos({photos: output});
-  //     console.log('Got Photos', output);
-  //   } else {
-  //     let testPhotos: PhotoAlbum = {
-  //       photos: ImageData,
-  //     };
-  //     console.log('Got Photos', testPhotos.photos?.edges[1]);
-  //     setPhotos({photos: testPhotos.photos});
-  //   }
-  // };
+    if (useIcloudPhotos) {
+      const output: CameraRoll.PhotoIdentifiersPage = await CameraRoll.getPhotos(
+        params,
+      );
 
-  // useEffect(() => {
-  //   async function getPhotos() {
-  //     await requestPhotos();
-  //   }
-  //   getPhotos();
-  // }, []);
+      const noGeoImages = output.edges.filter((item) => {
+        if (item.node.location) {
+          if (item.node.location.latitude && item.node.location.longitude) {
+            return item;
+          }
+        }
+      });
 
-  // const handleButtonPress = async () => {
-  //   if (photos.photos?.edges[currentIndex] && currentIndex < 7) {
-  //     let photo = photos.photos?.edges[currentIndex];
-  //     setCurrentPhoto(photo);
-  //   }
-  // };
+      output.edges = noGeoImages;
 
-  // const myTVEventHandler = (event: HWKeyEvent) => {
-  //   // works without touchable
-  //   // not seeing swipe events on simulator
-  //   // are swipes from react-navigatin stealing
-  //   // console.log('event', event);
-  //   console.log(
-  //     '' + event.eventType + ' ' + event.eventKeyAction + ' ' + event.tag,
-  //   );
-  // };
+      setPhotos({photos: output});
+      console.log('Got icloud Photos', output);
+    } else {
+      let testPhotos: PhotoAlbum = {
+        photos: ImageData,
+      };
+      console.log('Got test Photos', testPhotos.photos?.edges[1]);
+      setPhotos({photos: testPhotos.photos});
+    }
+  };
 
-  // useTVEventHandler(myTVEventHandler);
+  useEffect(() => {
+    async function getPhotos() {
+      await requestPhotos();
+    }
+    getPhotos();
+  }, []);
 
   const handleButtonPress = async () => {
-    // navigation.navigate('MapScreen', {anotherTest: 'foo'});
+    console.log('photos', photos);
     navigation.reset({
       index: 0,
-      routes: [{name: 'MapScreen'}],
+      routes: [{name: 'MapScreen', params: {photos: photos}}],
     });
   };
 
